@@ -7,7 +7,10 @@ RUN apt-get update && apt-get install -y git
 RUN git clone https://github.com/cc32d9/wax-leap.git && cd wax-leap && git checkout tags/v3.2.0wax01 && git submodule update --init --recursive
 
 # Build and Install WAX-Leap 3.2.0
-RUN cd wax-leap && scripts/install_deps.sh && scripts/pinned_build.sh deps build "$(nproc)" && make install
+RUN cd wax-leap && scripts/install_deps.sh && scripts/pinned_build.sh deps build "$(nproc)" 
+
+# Install Wax-Leap 3.2.0
+RUN cd wax-leap/build && make install
 
 # Remove wax-leap files
 RUN rm -r wax-leap
